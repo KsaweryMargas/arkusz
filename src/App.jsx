@@ -1,28 +1,32 @@
-
+import React, { useState } from 'react'
 import './App.css'
 
 function App() {
+  const [tytul, Tytul] = useState('')
+  const [rodzaj, Rodzaj] = useState('')
 
-  const Submit = () =>  {
-      
+  const Submit = (event) => {
+    event.preventDefault()
+    console.log(`tytul: ${tytul}; rodzaj: ${rodzaj}`)
   }
-
 
   return (
     <>
-      <label>Tytul Filmu</label><br/>
-      <input type="text"/><br/>
-      <label>Rodzaj</label><br/>
-      <select>
-        <option value=""></option>
-        <option value="1">Komedia</option>
-        <option value="2">Obyczajowy</option>
-        <option value="3">Sensacyjny</option>
-        <option value="4">Horror</option>
-      </select><br/>
-      <button onClick={() => Submit()} type="submit">Dodaj</button>
+      <form onSubmit={Submit}>
+          <label>Tytul filmu</label>
+          <input id="tytul" value={tytul} onChange={(event) => Tytul(event.target.value)}/>
+          <label>Rodzaj</label>
+          <select id="rodzaj" value={rodzaj} onChange={(event) => Rodzaj(event.target.value)}>
+            <option value=""></option>
+            <option value="1">Komedia</option>
+            <option value="2">Obyczajowy</option>
+            <option value="3">Sensacyjny</option>
+            <option value="4">Horror</option>
+          </select>
+        <button type="submit">Dodaj</button>
+      </form>
     </>
-  ) 
+  )
 }
 
 export default App
